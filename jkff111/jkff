@@ -1,0 +1,15 @@
+module jkff(clk,rst,j,k,q);
+input clk, rst,j,k;
+output q, qbar;
+always@(posedge clk)
+if(rst)
+qtemp<=0;
+else
+case({j,k})
+2'b00: qtemp<=qtemp;
+2'b01: qtemp<=1'b0;
+2'b10: qtemp<=1'b1;
+2'b11: qtemp<=~qtemp;
+endcase
+assign q=qtemp, qbar=~qtemp;
+endmodule
